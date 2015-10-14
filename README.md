@@ -40,4 +40,5 @@ func main() {
 - [ ] Add `MaxConcurrent`functionality
 - [ ] Add http server (API) functionality 
 - [ ] Implement a maximum size of queue and stategies how to deal with an overflow
-
+- [ ] Create unit tests
+- [ ] Add quit possi
