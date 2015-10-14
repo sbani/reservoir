@@ -1,7 +1,6 @@
-package main
+package reservoir
 
 import (
-    "fmt"
     "time"
     "reflect"
 )
@@ -19,7 +18,7 @@ type Reservoir struct {
 
 func (rv *Reservoir) add(fn interface{}, args ...interface{}) {
     jb := job{fn, args}
-    bn.Queue = append(bn.Queue, jb)
+    rv.Queue = append(rv.Queue, jb)
 }
 
 func (rv *Reservoir) start() {
