@@ -66,11 +66,9 @@ func (rv *Reservoir) Start() {
     for {
        select {
         case <- ticker.C:
-            if len(rv.Queue) > 0 {
-                // Run as much concurrent job as setup
-                for i := 0; i < rv.MaxConcurrent; i++ {
-                    go rv.run()
-                }
+            // Run as much concurrent job as setup
+            for i := 0; i < rv.MaxConcurrent; i++ {
+                go rv.run()
             }
         case <- rv.stop:
             ticker.Stop()
@@ -86,15 +84,18 @@ func (rv *Reservoir) Stop() {
 
 // Run the oldest job in list and remove it
 func (rv *Reservoir) run() {
+    if len(rv.Queue) == 0 {
+        return
+    }
     job := rv.Queue[0]
+    // immediately remove the job from queue
+    rv.Queue = rv.Queue[1:]
     fn := reflect.ValueOf(job.fn)
     in := make([]reflect.Value, len(job.args))
     for k, param := range job.args {
         in[k] = reflect.ValueOf(param)
     }
     fn.Call(in)
-    // remove the first/oldest element
-    rv.Queue = rv.Queue[1:]
 }
 
 // Create a new reservoir struct and start working the queue
