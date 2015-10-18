@@ -60,3 +60,23 @@ func TestComplete(t *testing.T) {
     time.Sleep((8 * 2 + 1) * time.Millisecond)
     assert.Equal(t, 10, calls)
 }
+
+func TestStop(t *testing.T) {
+    rv := NewReservoir(2, 2 * time.Millisecond)
+    calls := 0
+    fn := func(){
+        calls++
+    }
+    for i := 0; i < 10; i++ {
+        rv.Add(fn)
+    }
+
+    // Wait 3 milliseconds and check if 2 calls were made and stop the run
+    time.Sleep(3 * time.Millisecond)
+    assert.Equal(t, 2, calls)
+    rv.Stop()
+
+    // Wait for the rest and check calls
+    time.Sleep((8 * 2 + 1) * time.Millisecond)
+    assert.Equal(t, 2, calls)
+}

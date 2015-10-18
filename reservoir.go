@@ -100,10 +100,12 @@ func (rv *Reservoir) run() {
 
 // Create a new reservoir struct and start working the queue
 func NewReservoir(maxConcurrent int, minTime time.Duration) *Reservoir {
+    quit := make(chan bool, 1)
     rv := &Reservoir{
         MaxConcurrent: maxConcurrent, 
         MinTime: minTime,
         OverflowStrategy: StrategyLeak,
+        stop: quit,
     }
     go rv.Start()
     return rv

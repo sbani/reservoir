@@ -34,6 +34,8 @@ func main() {
 }
 ```
 
+See `reservoir_test.go` for informations about usage as long as there are no docs please.
+
 ## Roadmap
 
 - [x] Create project
@@ -41,4 +43,4 @@ func main() {
 - [ ] Add http server (API) functionality 
 - [x] Implement a maximum size of queue and stategies how to deal with an overflow
 - [ ] Create unit tests
-- [ ] Add quit possi
+- [x] Add quit possibility
