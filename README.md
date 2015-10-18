@@ -41,9 +41,5 @@ See `reservoir_test.go` for informations about usage as long as there are no doc
 
 ## Roadmap
 
-- [x] Create project
-- [ ] Add `MaxConcurrent`functionality
-- [ ] Add http server (API) functionality 
-- [x] Implement a maximum size of queue and stategies how to deal with an overflow
-- [ ] Create unit tests
-- [x] Add quit possibility
+- [ ] Add http server (API) functionality
+
