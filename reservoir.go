@@ -67,7 +67,10 @@ func (rv *Reservoir) Start() {
        select {
         case <- ticker.C:
             if len(rv.Queue) > 0 {
-                rv.run()
+                // Run as much concurrent job as setup
+                for i := 0; i < rv.MaxConcurrent; i++ {
+                    go rv.run()
+                }
             }
         case <- rv.stop:
             ticker.Stop()
