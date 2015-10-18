@@ -21,6 +21,7 @@ type Reservoir struct {
     MaxQueueLength int
     OverflowStrategy int
     Queue []job
+    stop chan bool
 }
 
 // Set the queue limit and the strategy whats happens if queue is full
@@ -61,7 +62,6 @@ func (rv *Reservoir) handleStrategy() bool {
 // Start working on the queue
 func (rv *Reservoir) Start() {
     ticker := time.NewTicker(rv.MinTime)
-    quit := make(chan bool)
 
     for {
        select {
@@ -69,11 +69,16 @@ func (rv *Reservoir) Start() {
             if len(rv.Queue) > 0 {
                 rv.run()
             }
-        case <- quit:
+        case <- rv.stop:
             ticker.Stop()
             return
         }
     }
+}
+
+// Stop working no the queue
+func (rv *Reservoir) Stop() {
+    rv.stop <- true
 }
 
 // Run the oldest job in list and remove it
