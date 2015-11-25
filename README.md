@@ -1,6 +1,6 @@
 # Reservoir
 
-[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md) [![Build Status](https://travis-ci.org/sbani/reservoir.svg?branch=master)](https://travis-ci.org/sbani/reservoir) [![GoDoc](https://godoc.org/github.com/sbani/reservoir?status.svg)](https://godoc.org/github.com/sbani/reservoir)  
+[![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md) [![Build Status](https://travis-ci.org/sbani/reservoir.svg?branch=master)](https://travis-ci.org/sbani/reservoir) [![GoDoc](https://godoc.org/github.com/sbani/reservoir?status.svg)](https://godoc.org/github.com/sbani/reservoir) [![codecov.io](https://codecov.io/github/sbani/reservoir/coverage.svg?branch=master)](https://codecov.io/github/sbani/reservoir?branch=master)
 
 
 With reservoir you are able to bottle up your function calls in an easy way. Make sure your (or other external services) don't become overloaded by time.
